@@ -20,8 +20,11 @@
 
         .card-wrapper {
             perspective: 1000px;
-            width: 500px;
-            height: 500px;
+            width: 90vw;
+            max-width: 500px;
+            min-height: 70vh;
+            height: auto;
+            max-height: 600px;
             position: relative;
         }
 
@@ -37,7 +40,9 @@
         .card.open {
             transform: rotateY(180deg);
         }
-
+        .card-front {
+            height: 100%;
+        }
         .card-front,
         .card-back {
             position: absolute;
@@ -54,7 +59,7 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 36px;
+            font-size: clamp(24px, 6vw, 36px);
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             animation: glow 2s infinite alternate;
         }
@@ -62,23 +67,24 @@
         .card-back {
             background: rgba(255, 255, 255, 0.95);
             transform: rotateY(180deg);
-            padding: 30px;
+            padding: 4vw;
             text-align: center;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         h1 {
             color: #ff3385;
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: clamp(18px, 5vw, 32px);
+            margin-bottom: 1vw;
             animation: bounceIn 1s ease;
         }
 
         p {
             color: #333;
-            line-height: 1.6;
-            font-size: 16px;
-            margin: 15px 0;
+            line-height: 1.5;
+            font-size: clamp(12px, 3vw, 16px);
             animation: fadeIn 1.5s ease-in;
         }
 
@@ -89,8 +95,8 @@
         }
 
         .flowers {
-            margin: 20px 0;
-            font-size: 35px;
+            margin: 1vw 0;
+            font-size: clamp(20px, 7vw, 35px);
         }
 
         .flower {
@@ -113,7 +119,7 @@
 
         .falling-flower {
             position: absolute;
-            font-size: 25px;
+            font-size: clamp(15px, 5vw, 25px);
             color: #ff66b3;
             animation: fall linear infinite;
             z-index: 0;
@@ -200,6 +206,42 @@
                 opacity: 0;
             }
         }
+
+        /* Media Queries cho màn hình nhỏ */
+        @media (max-width: 600px) {
+            .card-wrapper {
+                width: 95vw;
+                min-height: 75vh;
+            }
+
+            .card-back {
+                padding: 3vw;
+            }
+
+            h1 {
+                font-size: clamp(16px, 4vw, 24px);
+            }
+
+            p {
+                font-size: clamp(11px, 2.5vw, 14px);
+            }
+
+            .flowers {
+                font-size: clamp(18px, 6vw, 30px);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-wrapper {
+                width: 98vw;
+                min-height: 80vh;
+                /* Tăng chiều cao tối thiểu */
+            }
+
+            .card-back {
+                padding: 2vw;
+            }
+        }
     </style>
 </head>
 
@@ -214,7 +256,8 @@
                 <p>Gửi đến các học viên thân yêu của tôi,</p>
                 <p>Nhân ngày Quốc tế Phụ nữ 8/3, tôi xin gửi lời chúc tốt đẹp nhất đến tất cả các bạn! Chúc các bạn luôn
                     <span class="highlight">xinh đẹp</span>, <span class="highlight">hạnh phúc</span> và <span
-                        class="highlight">thành công</span> trong học tập cũng như cuộc sống.</p>
+                        class="highlight">thành công</span> trong học tập cũng như cuộc sống.
+                </p>
                 <div class="flowers">
                     <span class="flower">🌸</span>
                     <span class="flower">🌷</span>
